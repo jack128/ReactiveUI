@@ -326,6 +326,8 @@ namespace ReactiveUI
             // we need list to implement at least IEnumerable<T> and IList
             // because NotifyCollectionChangedEventArgs expects an IList
             var list = collection as List<T> ?? collection.ToList();
+            if (list.Count == 0) return;
+            
             var disp = isLengthAboveResetThreshold(list.Count)
                 ? SuppressChangeNotifications() : Disposable.Empty;
 
